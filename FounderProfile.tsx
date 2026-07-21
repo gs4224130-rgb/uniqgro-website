@@ -1,0 +1,3 @@
+import { useParams } from 'react-router-dom'
+import { PageHero } from '../components/common/PageHero'
+export default function FounderProfile(){const {username}=useParams();return <><PageHero eyebrow="FOUNDER PROFILE" title={`@${username}`} lead="Public founder profiles are supported by the Supabase schema. This is a safe demo profile without private information."/><section className="section"><div className="container content-grid"><div className="card"><h2>Demo Founder</h2><p>Founder role · Idea stage · Open to collaboration</p></div><div className="card"><h3>Building</h3><p>Company description, problem being solved, help needed and expertise offered appear here when the founder chooses to make them public.</p></div></div></section></>}

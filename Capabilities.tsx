@@ -1,0 +1,3 @@
+import { PageHero } from '../components/common/PageHero'
+import { capabilitySystems } from '../content/site'
+export default function Capabilities(){return <><PageHero eyebrow="CAPABILITIES" title="What we build together." lead="Capabilities are activated at the stage where they answer a real founder decision—not sold as disconnected packages."/><section className="section"><div className="container">{capabilitySystems.map((s,i)=><article className="cap-system" key={s.title}><div><div className="eyebrow">SYSTEM {i+1}</div><h2>{s.title}</h2></div><div><div className="cards" style={{gridTemplateColumns:'repeat(2,1fr)'}}>{s.items.map(x=><div className="card" key={x}><h3>{x}</h3><p>Input → work → output → evidence.</p></div>)}</div></div></article>)}</div></section></>}

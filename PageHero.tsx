@@ -1,0 +1,1 @@
+export function PageHero({eyebrow,title,lead}:{eyebrow:string;title:string;lead?:string}){return <section className="page-hero"><div className="container"><div className="eyebrow">{eyebrow}</div><h1>{title}</h1>{lead&&<p className="lead">{lead}</p>}</div></section>}

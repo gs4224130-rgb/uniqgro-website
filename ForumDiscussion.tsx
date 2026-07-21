@@ -1,0 +1,4 @@
+import { useParams } from 'react-router-dom'
+import { demoPosts } from '../data/forum'
+import { PageHero } from '../components/common/PageHero'
+export default function ForumDiscussion(){const {postId}=useParams();const p=demoPosts.find(x=>x.id===postId)||demoPosts[0];return <><PageHero eyebrow={p.category} title={p.title} lead={p.excerpt}/><section className="section"><div className="container" style={{maxWidth:900}}><div className="forum-post"><div className="forum-meta"><span>{p.author}</span><span>{p.stage}</span></div><p>This is demo forum content. Production discussions, comments, bookmarks and reports are stored in Supabase after authentication and RLS are configured.</p></div><h2 style={{marginTop:50}}>Discussion</h2><div className="notice">Login is required to comment. Authentication is in configuration mode.</div></div></section></>}

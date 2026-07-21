@@ -1,24 +1,59 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import { HeroNetwork } from '../components/common/HeroNetwork'
-import { FounderJourney } from '../components/journey/FounderJourney'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import { site } from '../content/site'
 import { SEO } from '../lib/seo/SEO'
 
-const caps=['Startup Diagnosis & Strategic Clarity','Customer Discovery & Idea Validation','Positioning, Naming & Brand Direction','Offer Design & Business Model','Go-to-Market Planning','Content, Marketing & Demand Experiments','Sales Process & Business Development','Retention & Customer Experience','AI Workflows & Operational Automation','SOPs, Scorecards & Team Systems','Franchise and Expansion Readiness','Founder Accountability & Community']
-const reasons=[['We start early','Support begins before traction.'],['We think founder-to-founder','Partnership, not distance.'],['We connect the work','Strategy, brand, growth and systems reinforce one another.'],['We test before scaling','Evidence before expensive decisions.'],['We document progress','Scorecards, learnings and SOPs become company assets.'],['We build for independence','The founder should become stronger, not permanently dependent.']]
-export default function Home(){return <>
-<SEO title="UniqGro — Build Companies. Not Alone." description="UniqGro is a founder-first ecosystem built in India for idea-stage and early-stage founders who need clarity, validation, execution and community."/>
-<section className="hero"><div className="container hero-grid"><motion.div initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.55}}><div className="eyebrow">FOUNDER-FIRST · EXECUTION-LED · BUILT IN INDIA</div><h1 className="display">BUILD<br/>COMPANIES.<br/><em>NOT ALONE.</em></h1><p className="lead">UniqGro is an idea-stage founder ecosystem that brings strategy, validation, brand, execution and community into one connected journey.</p><div className="actions"><Link className="btn primary" to="/apply">Apply to Build <ArrowRight size={17}/></Link><Link className="btn ghost" to="/how-it-works">See How It Works</Link></div><p style={{opacity:.6,fontSize:'.86rem',marginTop:18}}>Begin with a founder diagnostic. No pressure. No generic pitch.</p></motion.div><HeroNetwork/></div></section>
-<section className="manifesto"><div className="container"><div className="eyebrow">THE BEGINNING</div><h2>Most startup support begins after traction.<span>We begin when all you have is an idea—and the conviction to build it.</span></h2></div></section>
-<section className="section"><div className="container"><div className="eyebrow">THE SUPPORT GAP</div><h2 className="section-title">Who stands beside the founder before the proof exists?</h2><div className="grid4"><article><h3>VCs</h3><p>Usually enter after evidence.</p></article><article><h3>Investors</h3><p>Usually enter when growth is visible.</p></article><article><h3>Accelerators</h3><p>Often select after early validation.</p></article><article style={{background:'var(--color-cobalt)',color:'#fff'}}><h3>UniqGro</h3><p>Built to help founders create the first credible proof.</p></article></div><p style={{fontSize:'1.4rem',marginTop:28}}>That is the space UniqGro is built to serve.</p></div></section>
-<section className="section dark"><div className="container"><div className="eyebrow">NOT AN AGENCY</div><h2 className="section-title">Execution should create evidence, not dependence.</h2><div className="split"><div><h3>Not this</h3><ul className="bullets"><li>Advice without accountability.</li><li>A collection of disconnected services.</li><li>Vanity metrics and guaranteed-growth promises.</li><li>An outsourced team replacing the founder.</li></ul></div><div><h3>Built for this</h3><ul className="bullets"><li>Clear decisions grounded in evidence.</li><li>Strategy connected directly to execution.</li><li>Shared scorecards and founder accountability.</li><li>Systems that remain useful after the engagement.</li></ul></div></div></div></section>
-<section className="section"><div className="container"><div className="eyebrow">THE FOUNDER JOURNEY</div><h2 className="section-title">From uncertainty to a repeatable system.</h2><FounderJourney/><div className="actions"><Link className="btn primary" to="/how-it-works">Explore the complete founder journey</Link></div></div></section>
-<section className="section"><div className="container"><div className="eyebrow">CAPABILITIES, ACTIVATED AT THE RIGHT STAGE</div><h2 className="section-title">Build what the next decision requires.</h2><div className="cards">{caps.map((c,i)=><article className="card" key={c}><div className="eyebrow">{String(i+1).padStart(2,'0')}</div><h3>{c}</h3><p>Problem → build → founder contribution → evidence of progress.</p></article>)}</div></div></section>
-<section className="section dark"><div className="container"><div className="eyebrow">COMMUNITY NETWORK</div><h2 className="section-title">A company needs more than one kind of mind.</h2><div className="role-network">{['Founders','Strategists','Builders','Operators'].map(x=><div className="role" key={x}><h3>{x}</h3><p>Serious people working through real problems, decisions and execution.</p></div>)}</div><p className="lead" style={{marginTop:30}}>UniqGro connects people who are serious about building—not collecting contacts. Ask better questions, share practical knowledge, find collaborators and stay accountable to real progress.</p><Link className="btn primary" to="/community">Enter the Community</Link></div></section>
-<section className="section"><div className="container portrait-layout"><div className="portrait"><img src={site.founder.image} alt="Portrait of Gourav Saini, Founder and CEO of UniqGro" loading="lazy"/></div><div><div className="eyebrow">FOUNDER NOTE</div><blockquote className="quote">“I’m building UniqGro as a founder—not as an outsider looking at founders from a distance. The goal is to create the kind of partnership that stays close to the problem, the decisions and the execution.”</blockquote><strong>{site.founder.name}</strong><p>{site.founder.role} · {site.founder.responsibility}</p><Link className="btn ghost" to="/founder">Read the Founder Story</Link></div></div></section>
-<section className="section"><div className="container"><div className="eyebrow">WHY FOUNDERS CHOOSE UNIQGRO</div><div className="cards">{reasons.map(([h,p])=><article className="card" key={h}><h3>{h}</h3><p>{p}</p></article>)}</div></div></section>
-<section className="section blue"><div className="container"><div className="eyebrow" style={{color:'#fff'}}>FOUNDER APPLICATIONS</div><h2 className="section-title">Bring the idea. Bring the truth. Bring the commitment.</h2><p className="lead">You do not need perfect slides, funding or all the answers. You do need a real problem, the willingness to speak with customers and the commitment to execute.</p><Link className="btn" to="/apply">Apply to Build with UniqGro</Link></div></section>
-<section className="official"><div className="container"><h2>WE DON’T WORK FOR FOUNDERS.<span>WE WORK WITH FOUNDERS.</span></h2><p className="lead" style={{margin:'28px auto'}}>Build the next step with people who understand the beginning.</p><div className="actions" style={{justifyContent:'center'}}><Link className="btn primary" to="/apply">Apply to Build</Link><Link className="btn ghost" to="/community">Join the Community</Link></div></div></section>
-</>}
+const stages = ['IDEA', 'STARTING', 'MVP', 'EARLY TRACTION', 'GROWTH', 'SCALE']
+const capabilities = [
+  ['01','Strategy','Turn uncertainty into focused direction, sharper decisions and a clear next move.'],
+  ['02','Brand & Positioning','Build a brand people understand, remember and trust before you spend heavily on growth.'],
+  ['03','Product & Technology','Shape the right MVP, workflows and digital systems around what the market actually needs.'],
+  ['04','Growth','Create practical experiments across content, demand, sales and partnerships—then learn from evidence.'],
+  ['05','Operations','Build scorecards, SOPs, automation and rhythms that make progress repeatable.'],
+  ['06','Scale Readiness','Strengthen the company before expansion, fundraising, hiring or new markets multiply complexity.'],
+]
+const story = [
+  ['You bring the vision.','The ambition, insight and reason this company should exist.'],
+  ['We make it executable.','We turn the next unknown into a decision, an experiment and a measurable move.'],
+  ['Then we build beside you.','Strategy, brand, product, growth and systems move together—not as disconnected services.'],
+]
+
+export default function Home(){
+  const {scrollYProgress}=useScroll()
+  const heroY=useTransform(scrollYProgress,[0,.18],[0,-90])
+  const heroScale=useTransform(scrollYProgress,[0,.18],[1,.94])
+  return <>
+    <SEO title="UniqGro — We work with founders." description="UniqGro works with idea-stage and early-stage founders across strategy, brand, product, growth and operating systems."/>
+
+    <section className="v2-hero">
+      <div className="v2-orb"/><div className="v2-noise"/>
+      <motion.div className="v2-hero-inner" style={{y:heroY,scale:heroScale}}>
+        <motion.div className="v2-kicker" initial={{opacity:0,y:16}} animate={{opacity:1,y:0}}><Sparkles size={15}/> Founder-first company building</motion.div>
+        <h1 className="v2-wordmark" aria-label="UNIQGRO">{'UNIQGRO'.split('').map((l,i)=><motion.span key={i} initial={{opacity:0,y:90}} animate={{opacity:1,y:0}} transition={{duration:.9,delay:.08*i,ease:[.16,1,.3,1]}}>{l}</motion.span>)}</h1>
+        <motion.div className="v2-hero-statement" initial={{opacity:0}} animate={{opacity:1}} transition={{delay:.85,duration:.9}}>
+          <p>We don’t work <em>for</em> founders.</p><p>We work <strong>with</strong> founders.</p>
+        </motion.div>
+        <motion.div className="v2-hero-bottom" initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{delay:1.15}}>
+          <p>Strategy → Brand → Product → Growth → Systems</p>
+          <Link className="v2-pill-button" to="/apply">Start a conversation <ArrowRight size={17}/></Link>
+        </motion.div>
+        <div className="v2-scroll-cue"><span>SCROLL TO BUILD</span><i/></div>
+      </motion.div>
+    </section>
+
+    <section className="v2-story-wrap"><div className="v2-story-sticky"><aside className="v2-story-side"><span>01 / THE PARTNERSHIP</span><p>One viewport. One idea at a time.</p></aside><div className="v2-story-stack">
+      {story.map(([t,c],i)=><motion.article key={t} className={`v2-story-card tone-${i+1}`} initial={{opacity:0,y:35}} whileInView={{opacity:1,y:0}} viewport={{amount:.65}} transition={{duration:.7}}><span>0{i+1}</span><h2>{t}</h2><p>{c}</p></motion.article>)}
+    </div></div></section>
+
+    <section className="v2-phrase-section"><motion.p initial={{opacity:.15}} whileInView={{opacity:1}}>Not an agency.</motion.p><motion.p initial={{opacity:.15}} whileInView={{opacity:1}}>Not a consultant.</motion.p><motion.h2 initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}}>A growth partner that stays close to the decisions and the execution.</motion.h2></section>
+
+    <section className="v2-stage-section"><div className="v2-section-head"><span>02 / WHERE WE ENTER</span><h2>Start where you are.<br/>Build what the next stage needs.</h2></div><div className="v2-stage-track">{stages.map((s,i)=><motion.div className="v2-stage" key={s} initial={{opacity:.25,scale:.96}} whileInView={{opacity:1,scale:1}} viewport={{amount:.75}}><span>{String(i+1).padStart(2,'0')}</span><strong>{s}</strong></motion.div>)}</div></section>
+
+    <section className="v2-capabilities"><div className="v2-section-head"><span>03 / WHAT WE BUILD TOGETHER</span><h2>Connected capabilities.<br/>Activated at the right moment.</h2></div><div className="v2-cap-grid">{capabilities.map(([n,t,c],i)=><motion.article key={t} className={`v2-cap-card cap-${i+1}`} initial={{opacity:0,y:35}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.25}}><span>{n}</span><h3>{t}</h3><p>{c}</p><i>↗</i></motion.article>)}</div></section>
+
+    <section className="v2-founder"><div className="v2-founder-photo"><motion.img src={site.founder.image} alt={`${site.founder.name}, Founder of UniqGro`} initial={{scale:1.08}} whileInView={{scale:1}} viewport={{once:true}} transition={{duration:1.1}}/><div className="v2-photo-wash"/></div><div className="v2-founder-copy"><span>04 / FOUNDER</span><motion.blockquote initial={{opacity:0,y:28}} whileInView={{opacity:1,y:0}} viewport={{once:true}}>“The founder should leave every stage with more clarity, stronger systems and greater ability to build independently.”</motion.blockquote><div><strong>{site.founder.name}</strong><p>{site.founder.role} · {site.founder.responsibility}</p></div><Link className="v2-text-link" to="/founder">Read the founder story <ArrowRight size={16}/></Link></div></section>
+
+    <section className="v2-final"><motion.div initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}}><span>READY WHEN YOU ARE</span><h2>Bring the vision.<br/><em>Let’s build the next move.</em></h2><p>You do not need perfect slides, funding or all the answers. Start with where you are and what you are trying to build.</p><Link className="v2-pill-button large" to="/apply">Build with UniqGro <ArrowRight size={18}/></Link></motion.div></section>
+  </>
+}

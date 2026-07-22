@@ -54,7 +54,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/uniqgro-website',
+    basename: '/',
   }
 )
 

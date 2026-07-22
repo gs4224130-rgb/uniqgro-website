@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
+import { GrowthLine } from './GrowthLine'
 
 export function PageHero({eyebrow,title,lead}:{eyebrow:string;title:string;lead?:string}){
   return <section className="page-hero v3-page-hero">
     <div className="v3-page-hero-orb one" aria-hidden="true"/>
     <div className="v3-page-hero-orb two" aria-hidden="true"/>
+    <GrowthLine className="v4-page-growth-line"/>
     <motion.div
       className="container v3-page-hero-inner"
       initial={{opacity:0,y:28}}

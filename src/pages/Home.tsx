@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { site } from '../content/site'
 import { SEO } from '../lib/seo/SEO'
+import { GrowthLine } from '../components/common/GrowthLine'
 
 const stages = ['IDEA', 'STARTING', 'MVP', 'EARLY TRACTION', 'GROWTH', 'SCALE']
 
@@ -21,17 +23,22 @@ const story = [
   ['Then we build beside you.','Strategy, brand, product, growth and systems move together—not as disconnected services.'],
 ]
 
+const operatingLoop = ['Clarity','Test','Evidence','Decision','Build']
+
 export default function Home(){
   const {scrollYProgress}=useScroll()
   const heroY=useTransform(scrollYProgress,[0,.18],[0,-70])
   const heroScale=useTransform(scrollYProgress,[0,.18],[1,.96])
   const founderImage = `${import.meta.env.BASE_URL}images/gourav-saini-founder.jpg`
+  const [showFounderMessage,setShowFounderMessage]=useState(false)
+  const toggleFounderMessage=()=>setShowFounderMessage(v=>!v)
 
   return <>
     <SEO title="UniqGro — We work with founders." description="UniqGro works with idea-stage and early-stage founders across strategy, brand, product, growth and operating systems."/>
 
     <section className="v2-hero">
       <div className="v2-orb"/><div className="v2-noise"/>
+      <GrowthLine className="v4-home-growth-line"/>
       <motion.div className="v2-hero-inner" style={{y:heroY,scale:heroScale}}>
         <motion.div className="v2-kicker" initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{duration:.5}}>
           <Sparkles size={15}/> Founder-first company building
@@ -67,7 +74,6 @@ export default function Home(){
           <Link className="v2-pill-button" to="/apply">Start a conversation <ArrowRight size={17}/></Link>
         </motion.div>
 
-        <div className="v2-scroll-cue"><span>SCROLL TO BUILD</span><i/></div>
       </motion.div>
     </section>
 
@@ -99,9 +105,22 @@ export default function Home(){
       </div>
     </section>
 
-    <section className="v2-phrase-section v3-phrase">
+    <section className="v2-phrase-section v3-phrase v4-phrase">
       <motion.p initial={{opacity:0,y:35}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.55}}>Not an agency.</motion.p>
       <motion.p initial={{opacity:0,y:35}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.55,delay:.08}}>Not a consultant.</motion.p>
+
+      <motion.div className="v4-operating-loop" initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.3}} transition={{duration:.58}}>
+        <span className="v3-label">FOUNDER OPERATING LOOP</span>
+        <div className="v4-loop-track">
+          {operatingLoop.map((step,i)=>
+            <motion.div className="v4-loop-step" key={step} initial={{opacity:0,x:-20}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:.42,delay:i*.09}}>
+              <span>{String(i+1).padStart(2,'0')}</span><strong>{step}</strong>
+            </motion.div>
+          )}
+        </div>
+        <p>Every move should reduce uncertainty and improve the next decision.</p>
+      </motion.div>
+
       <motion.h2 initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.65,delay:.12}}>
         A growth partner that stays close to the decisions and the execution.
       </motion.h2>
@@ -130,8 +149,30 @@ export default function Home(){
     </section>
 
     <section className="v2-founder v3-founder">
-      <motion.div className="v2-founder-photo" initial={{opacity:0,clipPath:'inset(0 0 12% 0)'}} whileInView={{opacity:1,clipPath:'inset(0 0 0% 0)'}} viewport={{once:true,amount:.2}} transition={{duration:.75,ease:[.16,1,.3,1]}}>
-        <img src={founderImage} alt={`${site.founder.name}, Founder of UniqGro`}/><div className="v2-photo-wash"/>
+      <motion.div
+        className={`v2-founder-photo v4-founder-interactive ${showFounderMessage?'is-message':''}`}
+        initial={{opacity:0,clipPath:'inset(0 0 12% 0)'}}
+        whileInView={{opacity:1,clipPath:'inset(0 0 0% 0)'}}
+        viewport={{once:true,amount:.2}}
+        transition={{duration:.75,ease:[.16,1,.3,1]}}
+        onMouseEnter={()=>setShowFounderMessage(true)}
+        onMouseLeave={()=>setShowFounderMessage(false)}
+        onClick={toggleFounderMessage}
+        onKeyDown={(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleFounderMessage()}}}
+        role="button"
+        tabIndex={0}
+        aria-pressed={showFounderMessage}
+        aria-label="Reveal a message from Gourav Saini"
+      >
+        <img src={founderImage} alt={`${site.founder.name}, Founder of UniqGro`}/>
+        <div className="v2-photo-wash"/>
+        <div className="v4-founder-message" aria-hidden={!showFounderMessage}>
+          <span className="v3-label">A NOTE FROM THE FOUNDER</span>
+          <blockquote>“I’m not speaking from the finish line. I’m building too.”</blockquote>
+          <p>UniqGro is being shaped through the same uncertainty, experiments and ambition that every early founder faces.</p>
+          <small>Hover or tap again to return to the portrait.</small>
+        </div>
+        <div className="v4-founder-hint">Hover / tap to meet the founder</div>
       </motion.div>
       <motion.div className="v2-founder-copy" initial={{opacity:0,y:35}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.2}} transition={{duration:.65}}>
         <span>FOUNDER</span>

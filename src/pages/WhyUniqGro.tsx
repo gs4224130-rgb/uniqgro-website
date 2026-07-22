@@ -72,9 +72,10 @@ export default function WhyUniqGro(){
           <h2>Close to the work. Honest about the evidence.</h2>
         </div>
 
-        <div className="v3-principle-grid">
+        <div className="v4-principle-sequence" aria-hidden="true"><span/></div>
+        <div className="v3-principle-grid v4-principle-grid">
           {principles.map(([title,desc],i)=>
-            <motion.article className="v3-principle-card" key={title} initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.2}} transition={{duration:.48,delay:i*.05}}>
+            <motion.article className="v3-principle-card v4-principle-card" key={title} initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.2}} transition={{duration:.5,delay:i*.09,ease:[.16,1,.3,1]}}>
               <span>{String(i+1).padStart(2,'0')}</span><h3>{title}</h3><p>{desc}</p>
             </motion.article>
           )}

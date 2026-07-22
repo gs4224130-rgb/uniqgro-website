@@ -141,8 +141,10 @@ export default function Home(){
       <div className="v2-section-head"><span>WHAT WE BUILD TOGETHER</span><h2>Connected capabilities.<br/>Activated at the right moment.</h2></div>
       <div className="v2-cap-grid">
         {capabilities.map(([n,t,c],i)=>
-          <motion.article key={t} className={`v2-cap-card cap-${i+1}`} initial={{opacity:0,y:28}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.2}} transition={{duration:.5,delay:(i%2)*.06}}>
-            <span>{n}</span><h3>{t}</h3><p>{c}</p><i>↗</i>
+          <motion.article key={t} className={`v2-cap-card cap-${i+1} v5-cap-card`} initial={{opacity:0,y:28}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.2}} transition={{duration:.5,delay:(i%2)*.06}}>
+            <span>{n}</span>
+            <div className="v5-cap-content"><h3>{t}</h3><p>{c}</p></div>
+            <i>↗</i>
           </motion.article>
         )}
       </div>
